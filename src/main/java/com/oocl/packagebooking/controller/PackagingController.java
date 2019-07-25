@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/packages")
+@CrossOrigin(origins = {"http://localhost:9527", "null"})
 public class PackagingController {
 
     @Autowired
