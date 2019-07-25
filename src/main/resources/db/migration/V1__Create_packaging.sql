@@ -5,6 +5,6 @@ create table `packaging`
    `receiver` VARCHAR(255) NOT NULL,
    `phonenum` VARCHAR(255) NOT NULL,
    `status` VARCHAR(255) NOT NULL,
-   `apptime` TIMESTAMP not null,
-   `weight` int not null,
+   `apptime` TIMESTAMP,
+   `weight` int,
 );

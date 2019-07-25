@@ -6,6 +6,9 @@ import java.util.Date;
 @Entity
 public class Packaging {
 
+    public Packaging() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = {"http://localhost:8082", "null"})
 @RestController
 @RequestMapping("/packages")
-@CrossOrigin(origins = {"http://localhost:9527", "null"})
 public class PackagingController {
 
     @Autowired
