@@ -78,7 +78,23 @@ public class PackagingControllerTest {
 
         when(packagingService.updatePackageStatus(anyLong(), any())).thenReturn(packaging);
 
-        ResultActions result = mvc.perform(put("/packages", packaging.getStatus())
+        ResultActions result = mvc.perform(put("/packages/{packageId}", packaging.getStatus())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(packaging)));
+
+        result.andExpect(status().isOk())
+                .andExpect(jsonPath("$.billno", is("12")))
+                .andExpect(jsonPath("$.receiver", is("me")))
+                .andExpect(jsonPath("$.weight", is(10)));
+    }
+
+    @Test
+    public void should_return_package_when_update_package_by_apptime() throws Exception {
+        Packaging packaging = new Packaging("12", "me", "123", "haven", new Date(), 10);
+
+        when(packagingService.updatePickTimeByBillNumber(anyString(), any())).thenReturn(packaging);
+
+        ResultActions result = mvc.perform(put("/packages/{BillNumber}", packaging.getApptime())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writeValueAsString(packaging)));
 

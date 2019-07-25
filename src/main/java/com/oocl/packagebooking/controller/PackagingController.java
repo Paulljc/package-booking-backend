@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @CrossOrigin(origins = {"http://localhost:8082", "null"})
 @RestController
 @RequestMapping("/packages")
@@ -37,6 +39,15 @@ public class PackagingController {
     public ResponseEntity updatePackageStatus(@PathVariable Long packageId, @RequestBody Packaging packaging){
         try {
             return new ResponseEntity(packagingService.updatePackageStatus(packageId, packaging), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e.toString(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/{BillNumber}")
+    public ResponseEntity updatePickTimeByBillNumber(@PathVariable String billNo, @RequestBody Date appTime){
+        try {
+            return new ResponseEntity(packagingService.updatePickTimeByBillNumber(billNo, appTime), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(e.toString(), HttpStatus.BAD_REQUEST);
         }

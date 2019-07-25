@@ -5,6 +5,7 @@ import com.oocl.packagebooking.repository.PackagingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,5 +30,11 @@ public class PackagingService {
 
     public List<Packaging> findPackageByStatus(String packageStatus) {
         return packagingRepository.findByStatus(packageStatus);
+    }
+
+    public Packaging updatePickTimeByBillNumber(String billNo, Date appTime) {
+        Packaging packagingDB = packagingRepository.findByBillno(billNo).get();
+        packagingDB.setApptime(appTime);
+        return packagingRepository.save(packagingDB);
     }
 }

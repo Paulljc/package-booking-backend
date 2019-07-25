@@ -19,7 +19,7 @@ public class Packaging {
     @Column
     private String phonenum;
     @Column
-    private String status;
+    private String status = "未取件";
     @Column
     private Date apptime;
     @Column
