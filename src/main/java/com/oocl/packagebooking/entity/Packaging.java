@@ -21,17 +21,23 @@ public class Packaging {
     @Column
     private String status = "未取件";
     @Column
-    private Date apptime;
+    private Long apptime;
     @Column
     private Integer weight;
 
-    public Packaging(String billno, String receiver, String phonenum, String status, Date apptime, Integer weight) {
+    public Packaging(String billno, String receiver, String phonenum, String status, Long apptime, Integer weight) {
         this.billno = billno;
         this.receiver = receiver;
         this.phonenum = phonenum;
         this.status = status;
         this.apptime = apptime;
         this.weight = weight;
+    }
+
+    public Packaging(String billno, String receiver, String phonenum) {
+        this.billno = billno;
+        this.receiver = receiver;
+        this.phonenum = phonenum;
     }
 
     public Long getId() {
@@ -74,11 +80,11 @@ public class Packaging {
         this.status = status;
     }
 
-    public Date getApptime() {
+    public Long getApptime() {
         return apptime;
     }
 
-    public void setApptime(Date apptime) {
+    public void setApptime(Long apptime) {
         this.apptime = apptime;
     }
 

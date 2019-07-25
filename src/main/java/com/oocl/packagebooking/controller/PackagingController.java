@@ -45,7 +45,7 @@ public class PackagingController {
     }
 
     @PutMapping("/{BillNumber}")
-    public ResponseEntity updatePickTimeByBillNumber(@PathVariable String billNo, @RequestBody Date appTime){
+    public ResponseEntity updatePickTimeByBillNumber(@PathVariable String billNo, @RequestBody Long appTime){
         try {
             return new ResponseEntity(packagingService.updatePickTimeByBillNumber(billNo, appTime), HttpStatus.OK);
         } catch (Exception e) {

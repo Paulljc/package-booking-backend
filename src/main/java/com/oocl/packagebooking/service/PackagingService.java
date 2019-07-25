@@ -32,7 +32,7 @@ public class PackagingService {
         return packagingRepository.findByStatus(packageStatus);
     }
 
-    public Packaging updatePickTimeByBillNumber(String billNo, Date appTime) {
+    public Packaging updatePickTimeByBillNumber(String billNo, Long appTime) {
         Packaging packagingDB = packagingRepository.findByBillno(billNo).get();
         packagingDB.setApptime(appTime);
         return packagingRepository.save(packagingDB);

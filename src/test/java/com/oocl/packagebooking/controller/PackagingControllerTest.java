@@ -40,8 +40,8 @@ public class PackagingControllerTest {
     @Test
     public void should_return_package_when_find_all_package() throws Exception {
         List<Packaging> packagings = Arrays.asList(
-                new Packaging("12", "me", "123", "haven", new Date(), 10),
-                new Packaging("13", "me", "123", "haven", new Date(), 10)
+                new Packaging("12", "me", "123"),
+                new Packaging("12", "me", "123")
         );
 
         when(packagingService.findAllPackage()).thenReturn(packagings);
@@ -58,8 +58,8 @@ public class PackagingControllerTest {
     @Test
     public void should_return_package_when_find_package_by_status() throws Exception {
         List<Packaging> packagings = Arrays.asList(
-                new Packaging("12", "me", "123", "haven", new Date(), 10),
-                new Packaging("13", "me", "123", "haven", new Date(), 10)
+                new Packaging("12", "me", "123"),
+                new Packaging("12", "me", "123")
         );
 
         when(packagingService.findPackageByStatus(anyString())).thenReturn(packagings);
@@ -74,7 +74,7 @@ public class PackagingControllerTest {
 
     @Test
     public void should_return_package_when_update_package_by_status() throws Exception {
-        Packaging packaging = new Packaging("12", "me", "123", "haven", new Date(), 10);
+        Packaging packaging = new Packaging("12", "me", "123");
 
         when(packagingService.updatePackageStatus(anyLong(), any())).thenReturn(packaging);
 
@@ -84,13 +84,12 @@ public class PackagingControllerTest {
 
         result.andExpect(status().isOk())
                 .andExpect(jsonPath("$.billno", is("12")))
-                .andExpect(jsonPath("$.receiver", is("me")))
-                .andExpect(jsonPath("$.weight", is(10)));
+                .andExpect(jsonPath("$.receiver", is("me")));
     }
 
     @Test
     public void should_return_package_when_update_package_by_apptime() throws Exception {
-        Packaging packaging = new Packaging("12", "me", "123", "haven", new Date(), 10);
+        Packaging packaging = new Packaging("12", "me", "123");
 
         when(packagingService.updatePickTimeByBillNumber(anyString(), any())).thenReturn(packaging);
 
@@ -101,12 +100,12 @@ public class PackagingControllerTest {
         result.andExpect(status().isOk())
                 .andExpect(jsonPath("$.billno", is("12")))
                 .andExpect(jsonPath("$.receiver", is("me")))
-                .andExpect(jsonPath("$.weight", is(10)));
+                .andExpect(jsonPath("$.phonenum", is("123")));
     }
 
     @Test
     public void should_return_package_when_add_package() throws Exception {
-        Packaging packaging = new Packaging("12", "me", "123", "haven", new Date(), 10);
+        Packaging packaging = new Packaging("12", "me", "123");
 
         when(packagingService.addPackage(any())).thenReturn(packaging);
 
@@ -118,6 +117,6 @@ public class PackagingControllerTest {
         result.andExpect(status().isOk())
                 .andExpect(jsonPath("$.billno", is("12")))
                 .andExpect(jsonPath("$.receiver", is("me")))
-                .andExpect(jsonPath("$.weight", is(10)));
+                .andExpect(jsonPath("$.phonenum", is("123")));
     }
 }
