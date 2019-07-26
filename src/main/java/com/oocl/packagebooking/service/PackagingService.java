@@ -44,7 +44,7 @@ public class PackagingService {
         Date date = new Date(packaging.getApptime());
         Packaging packageDB = packagingRepository.findById(packaging.getId()).get();
         if(date.getHours() > 9 && date.getHours() < 20){
-            throw new Exception(String.format("Date Error", date));
+            throw new Exception(String.format("Date %tc%n Error ", date));
         }
         packageDB.setStatus("已预约");
         packageDB.setApptime(packaging.getApptime());
